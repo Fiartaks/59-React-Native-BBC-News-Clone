@@ -11,13 +11,14 @@ import {colors} from '../constants';
 import Logo from './Logo';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
+import type { HomeScreenNavigationProp } from '../../type';
 
 interface Props {
   icon?: boolean;
 }
 
 const Header = ({icon}: Props) => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<HomeScreenNavigationProp>();
   return (
     <SafeAreaView>
       <StatusBar barStyle="light-content" />
@@ -30,7 +31,7 @@ const Header = ({icon}: Props) => {
               <Ionicons name="arrow-back" size={24} color="black" />
             </TouchableOpacity>
           ) : (
-            <Text style={styles.backButtonText}>Newss</Text>
+            <Text style={styles.backButtonText}>News</Text>
           )}
         </View>
         <Logo />

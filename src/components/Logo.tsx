@@ -2,8 +2,9 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {colors} from '../constants';
 import { useNavigation } from '@react-navigation/native';
+import type { HomeScreenNavigationProp } from '../../type';
 const Logo = () => {
-  const navigation = useNavigation()
+  const navigation = useNavigation<HomeScreenNavigationProp>()
   return (
     <TouchableOpacity
     onPress={() => navigation.navigate('Home')}

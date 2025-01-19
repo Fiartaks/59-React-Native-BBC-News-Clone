@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native'
 const News = () => {
   return (
     <View>
-      <Text>Newss</Text>
+      <Text>News</Text>
     </View>
   )
 }
