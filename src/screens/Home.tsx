@@ -65,6 +65,16 @@ const Home = () => {
     }
   };
 
+  const handleLoadMore = () => {
+    setPage(prevPage => prevPage + 1);
+  };
+
+  useEffect(() => {
+    if (page > 1) {
+      getData(page);
+    }
+  }, [page]);
+
   const renderTabItem = ({item}: {item: string}) => (
     <TouchableOpacity style={styles.tab} onPress={() => setSelectedTab(item)}>
       <Text
@@ -74,13 +84,23 @@ const Home = () => {
     </TouchableOpacity>
   );
   const renderNewsCard = ({item}: {item: NewsData}) => (
-    <TouchableOpacity style={styles.card}>
-      {item?.urlToImage && <Image source={{uri: item?.urlToImage}} style={styles.image} resizeMode='cover' />}
+    <TouchableOpacity
+      style={styles.card}
+      onPress={() => navigation.navigate('News',{item})}>
+      {item?.urlToImage && (
+        <Image
+          source={{uri: item?.urlToImage}}
+          style={styles.image}
+          resizeMode="cover"
+        />
+      )}
       <View style={styles.cardContent}>
         <Text style={styles.title}>{item?.title}</Text>
         <Text style={styles.description}>{item?.description}</Text>
         <Text style={styles.author}>{item?.author}</Text>
-        <Text style={styles.publishedAt}>Published at: {new Date(item.publishedAt).toLocaleString()}</Text>
+        <Text style={styles.publishedAt}>
+          Published at: {new Date(item.publishedAt).toLocaleString()}
+        </Text>
       </View>
     </TouchableOpacity>
   );
@@ -107,6 +127,7 @@ const Home = () => {
           renderItem={renderNewsCard}
           onEndReachedThreshold={0.5}
           contentContainerStyle={styles.list}
+          onEndReached={handleLoadMore}
           ListFooterComponent={
             <ActivityIndicator
               size="large"

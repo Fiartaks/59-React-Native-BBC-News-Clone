@@ -2,24 +2,23 @@ import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 export type RootStackParamList = {
   Home: undefined;
-  News: undefined;
+  News: {item: NewsData};
   SignIn: undefined;
 };
 
 export type HomeScreenNavigationProp =
-  NativeStackNavigationProp<RootStackParamList>
+  NativeStackNavigationProp<RootStackParamList>;
 
-
-  export interface NewsData{
-    author:string,
-    content:string,
-    description:string,
-    publishedAt:string,
-    source:{
-        id:string,
-        name:string
-    };
-    title:string,
-    url:string,
-    urlToImage:string,
-  }
+export interface NewsData {
+  author: string;
+  content: string;
+  description: string;
+  publishedAt: string;
+  source: {
+    id: string;
+    name: string;
+  };
+  title: string;
+  url: string;
+  urlToImage: string;
+}
