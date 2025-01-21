@@ -21,6 +21,7 @@ import {
 import {colors} from '../constants';
 import {useEffect, useState} from 'react';
 import {NEWS_API_KEY} from '../../config';
+//import {WebView} from 'react-native-webview';
 
 type NewsScreenRouteProp = RouteProp<RootStackParamList, 'News'>;
 const News = () => {
@@ -47,7 +48,9 @@ const News = () => {
   }, []);
 
   const renderTrendingNewsCard = ({item}: {item: NewsData}) => (
-    <TouchableOpacity style={styles.trendingCard} onPress={()=>navigation.navigate('News',{item})} >
+    <TouchableOpacity
+      style={styles.trendingCard}
+      onPress={() => navigation.navigate('News', {item})}>
       {item?.urlToImage && (
         <Image
           source={{uri: item?.urlToImage}}
@@ -55,9 +58,11 @@ const News = () => {
           resizeMode="cover"
         />
       )}
-      <View style={{paddingHorizontal:5,}}>
+      <View style={{paddingHorizontal: 5}}>
         <Text style={styles.trendingTitle}>{item.title}</Text>
-        <Text style={styles.trendingAuthor}>By {item.author || 'Unknown Author'}</Text>
+        <Text style={styles.trendingAuthor}>
+          By {item.author || 'Unknown Author'}
+        </Text>
       </View>
     </TouchableOpacity>
   );
@@ -65,8 +70,9 @@ const News = () => {
   return (
     <View style={styles.containerView}>
       <Header icon={true} />
-      <ScrollView style={{paddingBottom:200}}>
-        {item?.urlToImage && (
+      {/* <WebView source={{uri: item?.url}} style={{flex: 1}} /> */}
+      <ScrollView style={{paddingBottom: 200}}>
+         {item?.urlToImage && (
           <Image
             source={{uri: item?.urlToImage}}
             style={styles.image}
@@ -92,8 +98,8 @@ const News = () => {
             contentContainerStyle={styles.trendingList}
             showsVerticalScrollIndicator={false}
           />
-        </View>
-      </ScrollView>
+        </View> 
+      </ScrollView> 
     </View>
   );
 };
@@ -144,30 +150,29 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginVertical: 16,
   },
-  trendingList:{
-    paddingVertical:10,
-    paddingBottom:50,
+  trendingList: {
+    paddingVertical: 10,
+    paddingBottom: 50,
   },
-  trendingCard:{
+  trendingCard: {
     marginRight: 16,
-    width:150,
-    borderWidth:1,
-    borderColor:colors.lightBlack,
-    borderRadius:8,
+    width: 150,
+    borderWidth: 1,
+    borderColor: colors.lightBlack,
+    borderRadius: 8,
   },
-  trendingImage:{
+  trendingImage: {
     width: '100%',
     height: 110,
-    borderRadius:8,
+    borderRadius: 8,
   },
-  trendingTitle:{
+  trendingTitle: {
     fontSize: 14,
     fontWeight: 'bold',
-    marginVertical:4,
+    marginVertical: 4,
   },
-  trendingAuthor:{
+  trendingAuthor: {
     fontSize: 12,
     color: colors.lightGray,
-  }
- 
+  },
 });

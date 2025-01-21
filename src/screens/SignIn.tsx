@@ -1,47 +1,67 @@
-import {Dimensions, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
+import {
+  Dimensions,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {colors} from '../constants';
 import Logo from '../components/Logo';
 
- const {width}= Dimensions.get('window')
+const {width} = Dimensions.get('window');
 const SignIn = () => {
   return (
     <View style={styles.container}>
-   <View style={styles.contentView}>
-    <Logo />
-    <Text style={styles.signInText}>Sign in</Text>
-    <View style={styles.inputView}>
-      <TextInput placeholder='Email or username' placeholderTextColor={colors.darkGray} style={styles.inputStyle} />
-      <TextInput placeholder='Password' placeholderTextColor={colors.darkGray} style={styles.inputStyle} 
-      secureTextEntry
-      />
-      <TouchableOpacity style={styles.buttonView}>
-        <Text style={styles.buttonText}>Sign in</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.helpView} >
-        <Text style={styles.helpText}>Need Help signing in?</Text>
-      </TouchableOpacity>
-    </View>
-   </View>
+      <View style={styles.contentView}>
+        <Logo />
+        <Text style={styles.signInText}>Sign in</Text>
+        <View style={styles.inputView}>
+          <TextInput
+            placeholder="Email or username"
+            placeholderTextColor={colors.darkGray}
+            style={styles.inputStyle}
+          />
+          <TextInput
+            placeholder="Password"
+            placeholderTextColor={colors.darkGray}
+            style={styles.inputStyle}
+            secureTextEntry
+          />
+          <TouchableOpacity style={styles.buttonView}>
+            <Text style={styles.buttonText}>Sign in</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.helpView}>
+            <Text style={styles.helpText}>Need Help signing in?</Text>
+          </TouchableOpacity>
+          <View style={{paddingVertical:20,}}>
+            <Text style={styles.noAccountText}>Don't have a BBC account?</Text>
+            <TouchableOpacity>
+              <Text style={[styles.helpText, {textAlign: 'center'}]}>
+                Register now
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
     </View>
   );
 };
 export default SignIn;
 const styles = StyleSheet.create({
- container:{
-   backgroundColor: colors.white,
-   flex: 1,
-   
- },
-  contentView:{
-   flex:1,
-   justifyContent:'center',
-   alignItems:'center',
-   
- }, 
-  signInText:{
-    fontSize:25,
+  container: {
+    backgroundColor: colors.white,
+    flex: 1,
+  },
+  contentView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  signInText: {
+    fontSize: 25,
     fontWeight: '700',
-    marginTop:20,
+    marginTop: 20,
   },
   inputView: {
     width: width - 30,
@@ -68,7 +88,6 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     marginTop: 20,
     borderRadius: 7,
-
   },
   helpView: {
     paddingVertical: 15,
@@ -86,5 +105,6 @@ const styles = StyleSheet.create({
     color: colors.black,
     fontWeight: '700',
     fontSize: 17,
+    textAlign: 'center',
   },
 });
